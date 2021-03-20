@@ -1,0 +1,9 @@
+.city-container {
+    border: solid rgb(153, 145, 145) 1px;
+    height: 175px;
+    width: 945px;
+}
+
+.container-fluid {
+    border: solid red 1px;
+}
