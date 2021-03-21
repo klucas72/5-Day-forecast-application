@@ -1,10 +1,29 @@
+@media only screen and (min-width: 600px) {
+  .main{
+    display: flex;
+  }
+
+  .city-container{
+      width: 80%
+  }
+
+  .search-history{
+    width: 20%;
+  }
+  }
+
 .city-container {
+    /* flex: 2 1 auto; */
+    
     border: solid rgb(153, 145, 145) 1px;
-    height: 175px;
-    width: 945px;
-    float: right;
 }
 
 #forecast {
     border: solid red 1px;
+}
+
+.search-history{
+  
+    /* flex: 1 2 auto; */
+    border: 1px solid blue;
 }

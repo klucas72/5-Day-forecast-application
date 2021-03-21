@@ -1,9 +1,3 @@
-
-// var requestUrlAtlanta = 'https://api.openweathermap.org/data/2.5/weather?q=Atlanta&appid=029bba2a4f5f9352670594571d57d373';
-
-// var requestUrlChicago = 'https://api.openweathermap.org/data/2.5/weather?q=Chicago&appid=029bba2a4f5f9352670594571d57d373';
-// var requestUrlPhiladelphia = 'https://api.openweathermap.org/data/2.5/weather?q=Philadelphia&appid=029bba2a4f5f9352670594571d57d373';
-
 var userInput;
 var searchForm = document.getElementById("search-form");
 searchForm.addEventListener("submit", function (e) {
@@ -29,12 +23,19 @@ function getApi() {
         }).then(function (data2) {
             console.log('DATA FETCHED BY LON LAT')
             console.log(data2)
-            for (var i = 0; i < data2.length; i++) {
-                // var weatherData = data2.daily[array].temp.day; 
+            var current = data2.current;
+            console.log('this is the current weather ' + current.temp);
+            for (var i = 0; i < data2.daily.length; i++) {
+                eachDay = data2.daily[i]; 
+                console.log('this is the daily high ' + eachDay.temp.day);
+                console.log('this is the daily low ' + eachDay.temp.night);
+                console.log('this is the daily UV index ' + eachDay.uvi);
             }
-            console.log('this is data2 ' + data2.daily[Array, 7].temp.day);
-            console.log('this is data2 ' + data2.daily[Array, 7].temp.night);
+            var weatherData1 = eachDay.temp.day;
+            var weatherData2 = eachDay.temp.night;
+            var weatherdata3 = eachDay.uvi;
+
         });
-    })
+    });
     
 }
