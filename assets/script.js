@@ -14,6 +14,7 @@ var currentCity = document.getElementById('current-city')
 var currentDay = document.getElementById('current-day')
 var currentTemp = document.getElementById('current-temp')
 var currentUvi = document.getElementById('current-uvi');
+var currentIcon = document.getElementById('current-icon');
 
 function getApi() {
 
@@ -38,6 +39,9 @@ function getApi() {
             var current = data2.current;
             currentUvi.textContent = current.uvi;
             currentTemp.textContent = Math.round(current.temp);
+            iconSlug = current.weather[0].icon;
+            currentIcon.innerHTML = `<img src="https://openweathermap.org/img/wn/${iconSlug}.png"/><div>${current.weather[0].description}</div>`
+
             for (var i = 0; i < data2.daily.length; i++) {
                 eachDay = data2.daily[i];
                 console.log('this is the daily high ' + eachDay.temp.day);
