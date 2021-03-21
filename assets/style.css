@@ -2,8 +2,9 @@
     border: solid rgb(153, 145, 145) 1px;
     height: 175px;
     width: 945px;
+    float: right;
 }
 
-.container-fluid {
+#forecast {
     border: solid red 1px;
 }
