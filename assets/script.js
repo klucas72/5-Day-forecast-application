@@ -55,6 +55,7 @@ function getApi() {
                   <p class="card-text">humidity: ${eachDay.humidity}%</p>
                   <p class="card-text">wind speed: ${Math.round(eachDay.wind_speed)} mph</p>
                   <p class="card-text">Temperature: ${Math.round(eachDay.temp.day)} °F</p>
+                  <img src="https://openweathermap.org/img/wn/${eachDay.weather[0].icon}.png"/><div>${eachDay.weather[0].description}</div>
                 </div>
               </div>`
                 forecastSection.appendChild(newForecast)
