@@ -23,13 +23,21 @@
     </div>
   </nav>
   <div class="main">
-    <div class="search-history">search history here</div>
+    <div class="search-history">
+      <ul class="list-group">
+        <!-- <li class="list-group-item active" aria-current="true">An active item</li> -->
+        <li class="list-group-item">A second item</li>
+        <li class="list-group-item">A third item</li>
+        <li class="list-group-item">A fourth item</li>
+        <li class="list-group-item">And a fifth one</li>
+      </ul>
+    </div>
     <div id="city" class="city-container">
-      <h1>Atlanta</h1>
-      <div>Sunday</div>
-      <div>73 degrees</div>
-      <div>UV index: 2.5 </div>
-      <div>mostly sunny </div>
+      <h1 id="current-city"> City</h1>
+      <div id="current-day"> Sunday</div>
+      <div> <span id="current-temp">3</span>°F</div>
+      <div> UV index: <span id="current-uvi">2.5</span></div>
+      <div id="current-icon"> mostly sunny </div>
     </div>
   </div>
 
@@ -39,7 +47,7 @@
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
   integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
-<script src="" async defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 <script type="text/javascript" src="assets/script.js"></script>
 
 </html>
