@@ -3,10 +3,14 @@ var searchForm = document.getElementById("search-form");
 searchForm.addEventListener("submit", function (e) {
     e.preventDefault();
     userInput = e.target.children[0].value;
-    getApi();
+    if (userInput.trim() !== '') { getApi(); }
+
 });
 //today's date
 var todaysDate = moment().format("D MMMM YYYY")
+
+fakeSearchItems = ["chicago", "atlanta", "denver", "dallas", "miami"];
+
 
 
 //DOM elements
@@ -16,7 +20,17 @@ var currentTemp = document.getElementById('current-temp')
 var currentUvi = document.getElementById('current-uvi');
 var currentIcon = document.getElementById('current-icon');
 var forecastSection = document.getElementById('forecast-section')
+var searchHistory = document.getElementById('search-history')
 
+for (var i = 0; i < fakeSearchItems.length; i++) {
+    var listItem = document.createElement("li");
+    listItem.classList.add("list-group-item");
+    listItem.textContent = fakeSearchItems[i]
+    //dynamically generate a LI
+
+    //append it to searchHistory
+    searchHistory.prepend(listItem)
+}
 
 function getApi() {
 
@@ -28,6 +42,21 @@ function getApi() {
         return response.json()
     }).then(function (data) {
         currentCity.textContent = data.name;
+
+        //LOCAL STORAGE
+        if (localStorage.getItem("city-search")) {
+            console.log('there is something in storage');
+            var arrayFromStorage = JSON.parse(localStorage.getItem('city-search'));
+            arrayFromStorage.push(data.name);
+            localStorage.setItem("city-search", JSON.stringify(arrayFromStorage));
+            console.log(arrayFromStorage);
+        } else {
+            console.log('nothing in storage')
+            localStorage.setItem("city-search", JSON.stringify([data.name]))
+
+        }
+
+
         var latitude = data.coord.lat;
         var longitude = data.coord.lon;
 
@@ -67,3 +96,5 @@ function getApi() {
     });
 
 }
+
+
