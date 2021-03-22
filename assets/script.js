@@ -7,21 +7,22 @@ searchForm.addEventListener("submit", function (e) {
 
 });
 //today's date
-var todaysDate = moment().format("D MMMM YYYY")
+var todaysDate = moment().format("MMM Do YYYY")
 
 searchItemsFromStorage = JSON.parse(localStorage.getItem("city-search"));
 
 
 
 //DOM elements
-var currentCity = document.getElementById('current-city')
-var currentDay = document.getElementById('current-day')
+var currentCity = document.getElementById('current-city');
+var currentDay = document.getElementById('current-day');
 var currentTemp = document.getElementById('current-temp')
 var currentUvi = document.getElementById('current-uvi');
 var currentIcon = document.getElementById('current-icon');
-var forecastSection = document.getElementById('forecast-section')
-var searchHistory = document.getElementById('search-history')
-var city = document.getElementById('city')
+var currentWind = document.getElementById('current-wind');
+var forecastSection = document.getElementById('forecast-section');
+var searchHistory = document.getElementById('search-history');
+var city = document.getElementById('city');
 
 for (var i = 0; i < searchItemsFromStorage.length; i++) {
     var listItem = document.createElement("li");
@@ -60,9 +61,11 @@ function getApi() {
         fetch(requestUrl).then(function (response2) {
             return response2.json()
         }).then(function (data2) {
+            console.log(data2);
             var current = data2.current;
             currentUvi.textContent = current.uvi;
             currentTemp.textContent = Math.round(current.temp);
+            currentWind.textContent = Math.round(current.wind_speed);
             iconSlug = current.weather[0].icon;
             currentIcon.innerHTML = `<img src="https://openweathermap.org/img/wn/${iconSlug}.png"/><div>${current.weather[0].description}</div>`
 

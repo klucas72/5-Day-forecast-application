@@ -14,15 +14,15 @@
 
 body {
     background-image: url(./pexels-oleg-magni-1040473.jpg);
-    background-size: 100%;
+    background-size: auto;
     background-repeat: no-repeat;
 }
 
 .city-container {
     /* flex: 2 1 auto; */
     padding: 0 0 0 50px;
-    background-color: rgb(189, 178, 177);
-    color: rgb(104, 53, 35);
+    background-color: rgb(136, 117, 182);
+    color: rgb(231, 217, 211);
     width: 40%;
     margin: 10px 10px 10px 10px;
 }
@@ -47,6 +47,6 @@ body {
 .card{
     max-width: 300px;
     margin: 1rem;
-    background-color: lightblue;
-    color: rgb(75, 75, 196);
+    background-color: rgb(136, 76, 196);
+    color: rgb(182, 182, 207);
 }
