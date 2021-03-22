@@ -21,6 +21,7 @@ var currentUvi = document.getElementById('current-uvi');
 var currentIcon = document.getElementById('current-icon');
 var forecastSection = document.getElementById('forecast-section')
 var searchHistory = document.getElementById('search-history')
+var city = document.getElementById('city')
 
 for (var i = 0; i < searchItemsFromStorage.length; i++) {
     var listItem = document.createElement("li");
@@ -56,12 +57,9 @@ function getApi() {
         var longitude = data.coord.lon;
 
         var requestUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&units=imperial&exclude=minutely,hourly&appid=029bba2a4f5f9352670594571d57d373`
-        console.log(requestUrl)
         fetch(requestUrl).then(function (response2) {
             return response2.json()
         }).then(function (data2) {
-            console.log('DATA FETCHED BY LON LAT')
-            console.log(data2)
             var current = data2.current;
             currentUvi.textContent = current.uvi;
             currentTemp.textContent = Math.round(current.temp);
@@ -83,13 +81,17 @@ function getApi() {
                 </div>
               </div>`
                 forecastSection.appendChild(newForecast)
-                // console.log('this is the daily high ' + eachDay.temp.day);
-                // console.log('this is the daily low ' + eachDay.temp.night);
-                // console.log('this is the daily UV index ' + eachDay.uvi);
             }
         });
     });
-
 }
+function showHide() {
+    var displaySetting = city.style.display
+    if (displaySetting == 'block') {
+        currentCity.style.display = 'none'
+    }
+    else { currentCity.style.display = 'block' }
+};
+showHide();
 
 
