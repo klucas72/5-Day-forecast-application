@@ -12,11 +12,19 @@
     }
 }
 
+body {
+    background-image: url(./pexels-oleg-magni-1040473.jpg);
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+
 .city-container {
     /* flex: 2 1 auto; */
     padding: 0 0 0 50px;
-    background-color lightBlue;
-    /* border: solid rgb(153, 145, 145) 1px; */
+    background-color: rgb(189, 178, 177);
+    color: rgb(104, 53, 35);
+    width: 40%;
+    margin: 10px 10px 10px 10px;
 }
 
 .search-history{
