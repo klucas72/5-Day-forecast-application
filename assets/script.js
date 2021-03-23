@@ -3,7 +3,7 @@ var searchForm = document.getElementById("search-form");
 searchForm.addEventListener("submit", function (e) {
     e.preventDefault();
     userInput = e.target.children[0].value;
-    if (userInput.trim() !== '') { getApi(); }
+    if (userInput.trim() !== '') { getApi(userInput); }
 
 });
 //today's date
@@ -29,12 +29,12 @@ var clearButton = document.getElementById('clear');
 var cityList = document.getElementById('city-list');
 
 
-function getApi() {
+function getApi(cityToSearch) {
 
     currentDay.textContent = dayOfTheWeek;
     currentDate.textContent = todaysDate;
 
-    var requestUrl1 = `https://api.openweathermap.org/data/2.5/weather?q=${userInput}&units=imperial&appid=029bba2a4f5f9352670594571d57d373`;
+    var requestUrl1 = `https://api.openweathermap.org/data/2.5/weather?q=${cityToSearch}&units=imperial&appid=029bba2a4f5f9352670594571d57d373`;
 
     fetch(requestUrl1).then(function (response) {
         return response.json()
@@ -82,7 +82,7 @@ function getApi() {
                 </div>`
                 forecastSection.appendChild(newForecast)
             }
-            var newCity = userInput;
+            var newCity = cityToSearch;
             var listItem = document.createElement("li");
             listItem.classList.add("list-group-item");
             listItem.textContent = newCity;
@@ -98,7 +98,11 @@ function populateHistory() {
         //dynamically generate a LI
         var listItem = document.createElement("li");
         listItem.classList.add("list-group-item");
-        listItem.textContent = searchItemsFromStorage[i]
+        listItem.textContent = searchItemsFromStorage[i];
+        listItem.addEventListener("click", function (e) {
+            console.log(e.target.textContent)
+            getApi(e.target.textContent);
+        });
 
         //append it to searchHistory
         searchHistory.prepend(listItem)
