@@ -27,21 +27,11 @@ body {
     margin: 10px 10px 10px 10px;
 }
 
-.search-history{
-  
-    /* flex: 1 2 auto; */
-    border: 1px solid blue;
-}
-
-/* .right-parent{
-    border: 2px dashed red;
-} */
-
 .forecast-section{
     display: flex;
     flex-wrap: wrap;
-    /* align-items: center; */
-    justify-content: center;
+    flex-direction: row;
+    border: dashed red 5px;
 }
 
 .card{

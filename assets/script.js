@@ -8,6 +8,7 @@ searchForm.addEventListener("submit", function (e) {
 });
 //today's date
 var todaysDate = moment().format("MMM Do YYYY")
+var dayOfTheWeek = moment().format('dddd');
 
 searchItemsFromStorage = JSON.parse(localStorage.getItem("city-search"));
 
@@ -16,6 +17,7 @@ searchItemsFromStorage = JSON.parse(localStorage.getItem("city-search"));
 //DOM elements
 var currentCity = document.getElementById('current-city');
 var currentDay = document.getElementById('current-day');
+var currentDate = document.getElementById('current-date')
 var currentTemp = document.getElementById('current-temp')
 var currentUvi = document.getElementById('current-uvi');
 var currentIcon = document.getElementById('current-icon');
@@ -23,20 +25,14 @@ var currentWind = document.getElementById('current-wind');
 var forecastSection = document.getElementById('forecast-section');
 var searchHistory = document.getElementById('search-history');
 var city = document.getElementById('city');
+var clearButton = document.getElementById('clear');
 
-for (var i = 0; i < searchItemsFromStorage.length; i++) {
-    var listItem = document.createElement("li");
-    listItem.classList.add("list-group-item");
-    listItem.textContent = searchItemsFromStorage[i]
-    //dynamically generate a LI
-
-    //append it to searchHistory
-    searchHistory.prepend(listItem)
-}
 
 function getApi() {
 
-    currentDay.textContent = todaysDate;
+    currentDay.textContent = dayOfTheWeek;
+    console.log(dayOfTheWeek);
+    currentDate.textContent = todaysDate;
 
     var requestUrl1 = `https://api.openweathermap.org/data/2.5/weather?q=${userInput}&units=imperial&appid=029bba2a4f5f9352670594571d57d373`;
 
@@ -76,25 +72,56 @@ function getApi() {
                 var newForecast = document.createElement('div');
                 newForecast.innerHTML = `<div class="card">
                 <div class="card-body">
-                  <h5 class="card-title">${formattedDate}</h5>
-                  <p class="card-text">humidity: ${eachDay.humidity}%</p>
-                  <p class="card-text">wind speed: ${Math.round(eachDay.wind_speed)} mph</p>
-                  <p class="card-text">Temperature: ${Math.round(eachDay.temp.day)} °F</p>
-                  <img src="https://openweathermap.org/img/wn/${eachDay.weather[0].icon}.png"/><div>${eachDay.weather[0].description}</div>
+                <h5 class="card-title">${formattedDate}</h5>
+                <p class="card-text">humidity: ${eachDay.humidity}%</p>
+                <p class="card-text">wind speed: ${Math.round(eachDay.wind_speed)} mph</p>
+                <p class="card-text">Temperature: ${Math.round(eachDay.temp.day)} °F</p>
+                <img src="https://openweathermap.org/img/wn/${eachDay.weather[0].icon}.png"/><div>${eachDay.weather[0].description}</div>
                 </div>
-              </div>`
+                </div>`
                 forecastSection.appendChild(newForecast)
             }
+            var newCity = userInput;
+            var listItem = document.createElement("li");
+            listItem.classList.add("list-group-item");
+            listItem.textContent = newCity;
+            searchHistory.prepend(listItem);
+
         });
     });
 }
-function showHide() {
-    var displaySetting = city.style.display
-    if (displaySetting == 'block') {
-        currentCity.style.display = 'none'
+
+function populateHistory() {
+    for (var i = 0; i < searchItemsFromStorage.length; i++) {
+        //dynamically generate a LI
+        var listItem = document.createElement("li");
+        listItem.classList.add("list-group-item");
+        listItem.textContent = searchItemsFromStorage[i]
+
+        //append it to searchHistory
+        searchHistory.prepend(listItem)
     }
-    else { currentCity.style.display = 'block' }
+}
+
+clearButton.addEventListener("click", clearCities);
+
+function clearCities() {
+    var oldCities = document.querySelectorAll(".list-group-item");
+    console.log(oldCities);
+    localStorage.removeItem("city-search");
+    oldCities.forEach(city => city.remove());
 };
-showHide();
+
+populateHistory();
+
+// function showHide() {
+//     var displaySetting = city.style.display
+//     if (displaySetting == 'block') {
+//         currentCity.style.display = 'none'
+//     }
+//     else { currentCity.style.display = 'block' }
+// };
+// showHide();
+
 
 
