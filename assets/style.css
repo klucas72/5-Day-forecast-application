@@ -38,8 +38,3 @@ body {
     background-color: rgb(136, 76, 196);
     color: rgb(182, 182, 207);
 }
-.divider {
-    width: 20px;
-    height: auto;
-    display: inline-block;
-}
