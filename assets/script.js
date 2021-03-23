@@ -26,12 +26,12 @@ var forecastSection = document.getElementById('forecast-section');
 var searchHistory = document.getElementById('search-history');
 var city = document.getElementById('city');
 var clearButton = document.getElementById('clear');
+var cityList = document.getElementById('city-list');
 
 
 function getApi() {
 
     currentDay.textContent = dayOfTheWeek;
-    console.log(dayOfTheWeek);
     currentDate.textContent = todaysDate;
 
     var requestUrl1 = `https://api.openweathermap.org/data/2.5/weather?q=${userInput}&units=imperial&appid=029bba2a4f5f9352670594571d57d373`;
@@ -64,6 +64,7 @@ function getApi() {
             currentWind.textContent = Math.round(current.wind_speed);
             iconSlug = current.weather[0].icon;
             currentIcon.innerHTML = `<img src="https://openweathermap.org/img/wn/${iconSlug}.png"/><div>${current.weather[0].description}</div>`
+            forecastSection.innerHTML = "";
 
             for (var i = 1; i < data2.daily.length - 2; i++) {
                 var eachDay = data2.daily[i];
@@ -87,6 +88,7 @@ function getApi() {
             listItem.textContent = newCity;
             searchHistory.prepend(listItem);
 
+            city.classList.remove("hidden");
         });
     });
 }
@@ -103,25 +105,15 @@ function populateHistory() {
     }
 }
 
-clearButton.addEventListener("click", clearCities);
-
-function clearCities() {
-    var oldCities = document.querySelectorAll(".list-group-item");
-    console.log(oldCities);
-    localStorage.removeItem("city-search");
-    oldCities.forEach(city => city.remove());
-};
+clearButton.addEventListener('click', function () {
+    localStorage.removeItem('city-search')
+    console.log(cityList)
+    window.location.reload()
+});
 
 populateHistory();
 
-// function showHide() {
-//     var displaySetting = city.style.display
-//     if (displaySetting == 'block') {
-//         currentCity.style.display = 'none'
-//     }
-//     else { currentCity.style.display = 'block' }
-// };
-// showHide();
+
 
 
 
