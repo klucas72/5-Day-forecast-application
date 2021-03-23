@@ -2,7 +2,7 @@
     .main{
         display: flex;
     }
-
+    
     .right-parent{
         width: 80%
     }
@@ -19,7 +19,6 @@ body {
 }
 
 .city-container {
-    /* flex: 2 1 auto; */
     padding: 0 0 0 50px;
     background-color: rgb(136, 117, 182);
     color: rgb(231, 217, 211);
@@ -27,11 +26,10 @@ body {
     margin: 10px 10px 10px 10px;
 }
 
-.forecast-section{
+#forecast-section{
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
-    border: dashed red 5px;
 }
 
 .card{
@@ -39,4 +37,9 @@ body {
     margin: 1rem;
     background-color: rgb(136, 76, 196);
     color: rgb(182, 182, 207);
+}
+.divider {
+    width: 20px;
+    height: auto;
+    display: inline-block;
 }
