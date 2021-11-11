@@ -18,11 +18,11 @@
 ## Usage
 * Enter the city you want in the search box and either press the enter key or the search button on the website.
 
-![This is a alt text.](/image/sample.png "This is a sample image.")
+![Atlanta city forecast](/atlanta.png "Atlanta city 5 day forecast")
 
-![This is a alt text.](/image/sample.png "This is a sample image.")
+![Dallas city forecast](/dallas.png "Dallas city 5 day forecast")
 
-![This is a alt text.](/image/sample.png "This is a sample image.")
+![New York city forecast](/new_york.png "New York City 5 day forecast")
     
 ## Credits
 * N/A
